@@ -1,0 +1,59 @@
+#include<stdio.h>
+#include<stdlib.h>
+int NearestNo (int *,int,int);//prototype of function
+int main()
+{
+	int no,i,ret=0,num;
+	int * arr=NULL;
+	printf("Enter size of array:\n");//size of the array
+	scanf("%d",&no);
+
+	arr=(int *)malloc(no*sizeof(int));//allocation of memeory dynamically
+
+	printf("Enter no of elements:\n");//accept no of array
+	for(i=0;i<no;i++)
+	{
+		scanf("%d",&arr[i]);
+	}
+	
+	printf("Enter no which you have to search:\n");//no for search
+	scanf("%d",&num);
+
+	ret=NearestNo(arr,no,num);//function call
+	printf("%d is nearest no from array\n ",ret);//print the no
+	return 0;
+}
+
+int NearestNo (int *ptr,int size,int no)//function defination
+{
+	int diff=0,icnt=0,mindiff=0,nearest=0;
+	mindiff=ptr[0]-no;//intialise the mindiff
+
+	if(mindiff<0)//if mindiff is less than zero then make that no negative with sign 
+	{
+		mindiff=-mindiff;
+	}
+
+	for(icnt=0;icnt<size;icnt++)
+	{
+		diff=ptr[icnt]-no;//initialise diff
+		if(diff<0)//if diff is less than zero then make that no negative with sign 
+		{
+			diff=-diff;
+		}
+		if(diff==0)//if difference is zero then copy that no into nearest 
+		{
+			nearest=ptr[icnt];
+		break;
+		}
+		else
+		{
+			if(diff<mindiff)//if diff is less than mindiff then copy into mindiff and that no into nearest
+			{
+				mindiff=diff;
+				nearest=ptr[icnt];
+			}
+		}
+	}
+	return nearest;//return nearest no
+}
