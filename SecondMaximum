@@ -1,0 +1,64 @@
+#include<stdio.h>
+#include<stdlib.h>
+int max2nd (int *,int *,int);//prototype of function
+int main()
+{
+	int no,i,ret=0;
+	int * arr=NULL;
+	int * brr=NULL;
+	printf("Enter size of array:\n");//size of array
+	scanf("%d",&no);
+
+	arr=(int *)malloc(no*sizeof(int));//dynamic memory allocation for array 
+
+	brr=(int *)malloc(no*sizeof(int));//dynamic memory allocation for array
+
+	printf("Enter no of elements:\n");//no of array
+	for(i=0;i<no;i++)
+	{
+		scanf("%d",&arr[i]);
+	}
+
+	for(i=0;i<no;i++)//copy no to another array
+	{
+		brr[i]=arr[i];
+	}
+
+	ret=max2nd(arr,brr,no);//function call
+	printf("\n%d  is second maximum from array\n",ret);//print second maximum no
+	return 0;
+}
+
+int max2nd (int *ptr,int * ptr1,int size)//function defination
+{
+	int max=0,icnt=0;
+	max=ptr[0];
+	for(icnt=0;icnt<size;icnt++)
+	{
+		if(max<ptr[icnt])//if max is less then copy that no into max
+		{
+			max=ptr[icnt];
+		}
+
+	}
+	for(icnt=0;icnt<size;icnt++)
+	{
+		if(ptr[icnt]<max)//if that no is less than max then copy into another array
+		{
+			ptr1[icnt]=ptr[icnt];
+		}
+		else if(ptr[icnt]==max)//if that no is equal to max then make it zero into another array
+		{
+			ptr1[icnt]=0;
+		}
+	}
+	max=ptr1[0];//intialise max
+	for(icnt=0;icnt<size;icnt++)
+	{
+		if(max<ptr1[icnt])//
+		{
+			max=ptr1[icnt];//if max is less then copy that no into max for 2nd array
+		}
+	}
+	return max;//return max
+}
