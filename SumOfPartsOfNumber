@@ -1,0 +1,62 @@
+//This program take the one number as the input and print addition of 2 parts from that number
+//e.g.input=2115    output=21+15=36
+#include<stdio.h>
+int sum(int);
+int main()
+{
+	int value=0,ret=0;
+	printf("Enter number\n");
+	scanf("%d",&value);
+
+	ret=sum(value);//function call
+	printf("%d is the addtion of the 2 parts of the number\n",ret);
+	return 0;
+}
+
+int sum(int iNo)//function defination
+{
+	int digit=0,isum=0,iNo1=0,iNo2=0,icnt1=0,icnt2=0,icnt=0,irev=0,temp=iNo;
+
+	//count the digit from number
+	while(iNo!=0)
+	{
+		icnt++;
+		iNo=iNo/10;
+	}
+
+	icnt1=icnt/2;
+	icnt2=icnt-icnt1;
+	iNo=temp;
+
+	//reverse the number
+	while(iNo!=0)
+	{
+		digit=iNo%10;
+		irev=irev*10+digit;
+		iNo=iNo/10;
+	}
+
+	iNo=irev;
+
+	//form 1st half no
+	while(icnt1!=0)
+	{
+		digit=iNo%10;
+		iNo1=iNo1*10+digit;
+		iNo=iNo/10;
+		icnt1--;
+	}
+
+	//form 2nd half no
+	while(icnt2!=0)
+	{
+		digit=iNo%10;
+		iNo2=iNo2*10+digit;
+		iNo=iNo/10;
+		icnt2--;
+	}
+
+	//sum of 2 parts
+	isum=iNo1+iNo2;
+	return isum;
+}
