@@ -1,0 +1,49 @@
+//this program will check number is strong or not
+//e.g. input=145   1!+4!+5!=145 output=yes
+#include<stdio.h>
+typedef int BOOL;
+typedef int LINT;
+#define true 1
+#define false 0
+
+BOOL CheckStrong(LINT iNo);//function prototype
+
+int main()
+{
+	int value=0;
+	BOOL ret;
+	printf("Enter number:\n");
+	scanf("%d",&value);
+
+	ret=CheckStrong(value);//function call
+	if(ret==true)
+	{
+		printf("%d is strong number\n",value);
+	}
+	else
+	{
+		printf("%d is not strong number\n",value);
+	}
+}
+
+BOOL CheckStrong(int iNo)//function defination
+{
+	LINT isum=0,temp=iNo;
+	int digit=0;
+	int Arr[10]={1,1,2,6,24,120,720,5040,40320,362880};//initialise array with there factorial value according to index
+
+	while((iNo!=0) && (isum<=temp))
+	{
+		digit=digit%10;//for single digit from number
+		isum=isum+Arr[digit];//addition of corresponding factorial value of digit
+		iNo=iNo/10;//for decrement digits from number
+	}
+	if(isum==temp)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
